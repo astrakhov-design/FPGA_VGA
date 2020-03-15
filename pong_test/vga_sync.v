@@ -1,3 +1,6 @@
+//took from FPGA Prototyping by Verilog Examples
+//Author: Pong P. Chu
+
 module vga_sync(
 	input clk,
 	input rst,
