@@ -10,7 +10,7 @@ module vga_sync #(
   parameter V_SYNCTIME      = 4,
   parameter V_BACKPORCH     = 23,
 //bits of output pixel generator
-  parameter PIXEL_GEN_BITS  = 12,
+  parameter PIXEL_GEN_BITS  = 12
 )(
   input clk,
   input rst,
@@ -19,12 +19,13 @@ module vga_sync #(
   output vsync,
   output video_on,
 
-  output [PIXEL_GEN_BITS-1:0] pixel_x,
-  output [PIXEL_GEN_BITS-1:0] pixel_y
+  output [PIXEL_GEN_BITS-1:0] pixel_x
 );
 
-reg [PIXEL_GEN_BITS-1:0]  h_count_reg, h_count_next;
-reg [PIXEL_GEN_BITS-1:0]  v_count_reg, v_count_next;
+reg   [PIXEL_GEN_BITS-1:0]    h_count_reg;
+wire  [PIXEL_GEN_BITS-1:0]    h_count_next;
+reg   [PIXEL_GEN_BITS-1:0]    v_count_reg;
+wire  [PIXEL_GEN_BITS-1:0]    v_count_next;
 
 //output buffer
 reg v_sync_reg, h_sync_reg;
@@ -66,6 +67,5 @@ assign video_on = (h_count_reg < H_PIXELS) && (v_count_reg < V_LINES);
 assign hsync    = h_sync_reg;
 assign vsync    = v_sync_reg;
 assign pixel_x  = h_count_reg;
-assign pixel_y  = v_count_reg;
 
 endmodule
